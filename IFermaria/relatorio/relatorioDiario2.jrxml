@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a80fdb91-25fe-47e0-8aab-bfb8232acb85">
+	<property name="ireport.zoom" value="1.464100000000024"/>
+	<property name="ireport.x" value="14"/>
+	<property name="ireport.y" value="251"/>
+	<parameter name="day" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["./relatorio"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     atendimento.`idAtendimanto` AS atendimento_idAtendimanto,
+     atendimento.`conduta` AS atendimento_conduta,
+     atendimento.`dataAtendimento` AS atendimento_dataAtendimento,
+     atendimento.`encaminhamento` AS atendimento_encaminhamento,
+     atendimento.`hora` AS atendimento_hora,
+     atendimento.`quantRetirada` AS quantRetirada,
+     atendimento.`horaSaida` AS atendimento_horaSaida,
+     atendimento.`queixa` AS atendimento_queixa,
+     aluno.`nome` AS aluno_nome,
+     aluno.`tipo` AS aluno_tipo,
+     aluno.`dataNasc` AS aluno_dataNasc,
+     aluno.`cpf` AS aluno_cpf,
+     aluno.`telefoneAluno` AS aluno_telefoneAluno,
+     aluno.`cartaoSUS` AS aluno_cartaoSUS,
+     atendente.`nome` AS atendente_nome
+FROM
+     `aluno` aluno INNER JOIN `atendimento` atendimento ON aluno.`idAluno` = atendimento.`aluno_idAluno`
+     INNER JOIN `atendente` atendente ON atendimento.`atendente_idAtendente` = atendente.`idAtendente`
+WHERE
+     dataAtendimento = $P{day}
+ORDER BY
+     hora ASC]]>
+	</queryString>
+	<field name="atendimento_idAtendimanto" class="java.lang.Integer"/>
+	<field name="atendimento_conduta" class="java.lang.String"/>
+	<field name="atendimento_dataAtendimento" class="java.sql.Date"/>
+	<field name="atendimento_encaminhamento" class="java.lang.String"/>
+	<field name="atendimento_hora" class="java.lang.String"/>
+	<field name="atendimento_horaSaida" class="java.lang.String"/>
+	<field name="atendimento_queixa" class="java.lang.String"/>
+	<field name="aluno_nome" class="java.lang.String"/>
+	<field name="aluno_tipo" class="java.lang.String"/>
+	<field name="aluno_dataNasc" class="java.sql.Date"/>
+	<field name="aluno_cpf" class="java.lang.String"/>
+	<field name="aluno_telefoneAluno" class="java.lang.String"/>
+	<field name="aluno_cartaoSUS" class="java.lang.String"/>
+	<field name="atendente_nome" class="java.lang.String"/>
+	<field name="quantRetirada" class="java.lang.String"/>
+	<variable name="count" class="java.math.BigDecimal" calculation="Count">
+		<variableExpression><![CDATA[$V{count}.add(new java.math.BigDecimal (1))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="78" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="553" height="75" uuid="56c94fb1-bc37-441c-837a-0b4d697f32f4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="176" y="0" width="373" height="46" uuid="2e10075f-763f-4250-b9d1-91d2d42fa35f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DIÁRIO DE ATENDIMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="46" width="373" height="20" forecolor="#00CC00" uuid="7ed1fa2b-401d-408b-bbcf-210ae9321c63"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Enfermaria do Câmpus Inconfidentes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="2" width="175" height="66" uuid="0e3e1ec5-c07c-4f4f-9c88-6cd78c043afb"/>
+				<imageExpression><![CDATA["if.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="382">
+			<rectangle>
+				<reportElement x="0" y="20" width="555" height="360" uuid="d98b71b5-789b-4ab4-a0f6-b945c0d59545"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="20" width="555" height="44" backcolor="#CCCCCC" uuid="8fd3bac0-76c3-4429-9e8f-2556de0575ee"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="55" y="65" width="49" height="20" forecolor="#CC0000" uuid="1c4f484c-f7d7-49ae-806b-876d6602b4e8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["  "+$F{atendimento_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="21" width="287" height="20" forecolor="#CC0000" uuid="8596f4ee-51a8-4639-a01d-03b87b6e2da5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="2" width="30" height="18" forecolor="#CC0000" uuid="d72c3d37-8c63-4834-b9e2-61eccb18ca53"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{count}+" º"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="204" y="65" width="99" height="20" uuid="9cdaeee0-0772-44a8-bb2e-f19ef64b9838"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATENDENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="87" width="55" height="20" uuid="7e95ab68-89e2-4363-9659-b050353d05f4"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUEIXAS:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="86" width="555" height="1" uuid="7e2ab4c3-2ecb-416c-ad01-731b898609a3"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<subreport>
+				<reportElement x="2" y="100" width="202" height="150" uuid="dc5d770f-cfeb-4306-a059-3af394841385"/>
+				<subreportParameter name="idAtendimento">
+					<subreportParameterExpression><![CDATA[$F{atendimento_idAtendimanto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "/relatorioDiario_enfermidades.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement x="0" y="250" width="385" height="1" uuid="79f760c7-a4ad-4dfb-8d17-a9d76574b400"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="252" width="259" height="86" uuid="8d264926-f470-41f7-b515-f144b0b02fb7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["                               "+$F{atendimento_queixa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="145" y="338" width="408" height="2" uuid="e256bdc9-5bfb-4c77-a727-70bdb196fbda"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="340" width="551" height="20" uuid="7f48cacd-9200-465a-a231-80bb82c05b59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENCAMINHAMENTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="360" width="550" height="20" uuid="9e8a7dcf-1e08-4cb2-87b3-99af12d75376"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atendimento_encaminhamento}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="553" height="1" uuid="eaca22cd-2ee5-4b26-bc2c-dec836976278"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed" lineColor="#009900"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="3" y="21" width="72" height="20" uuid="0c76e89b-1147-47f8-ae3a-bd5df398e6c7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_tipo}+": "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="65" width="54" height="20" uuid="d295806a-d15f-47f0-887c-b8a0a6697533"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrada:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="152" y="65" width="49" height="20" forecolor="#000000" uuid="0b972b9f-60ec-4fed-8a36-b7d927b451ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atendimento_horaSaida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="104" y="65" width="41" height="20" uuid="2c7950ca-e649-4d11-b7e4-78c12bcb6e66"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saída: ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="201" y="64" width="1" height="23" uuid="ead3b752-02ad-404c-992a-92e8f40d6f04"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="3" y="41" width="546" height="1" uuid="e4b167ed-b783-48e6-b354-c91fa8a88547"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="384" y="20" width="69" height="20" uuid="61816728-e0fd-4c03-b805-84af181008bc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Nasc:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="20" width="96" height="20" uuid="fca1d703-943f-447e-bfa8-d2b1493b0444"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{aluno_dataNasc})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="449" y="43" width="100" height="21" uuid="8b87fef4-69c4-4581-9af8-e0480707050c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_cpf}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="201" y="101" width="350" height="134" uuid="171bf98e-347e-4364-bc6b-ee088948439a"/>
+				<subreportParameter name="idAtendimento">
+					<subreportParameterExpression><![CDATA[$F{atendimento_idAtendimanto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "/relatorioDiario2_estoque.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="205" y="87" width="112" height="23" uuid="7fe49222-9f87-4c7f-86fa-a223ae5d658c"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medicação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="44" width="33" height="20" uuid="5c6ee849-dc9a-4adf-aedf-1145fddadaba"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="43" width="100" height="20" uuid="43d56ca1-1c4d-4f57-9998-048e74d9ee2b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_cartaoSUS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="157" y="44" width="105" height="20" uuid="b1df0482-2692-4c3a-a923-9bfc9adef8bb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cartão do SUS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="44" width="54" height="20" uuid="4903a449-1bd6-49fb-aaff-05ee879d7f15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="44" width="100" height="20" uuid="f9fda1a5-a08c-4ee7-8dc2-74af327f1c6d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_telefoneAluno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="250" width="100" height="20" uuid="3fd205ea-9238-4b3e-8567-799197cd986c"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observações:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="250" width="107" height="20" uuid="8a59cf06-5fce-413b-ac0c-a91ca750e4b2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBS. na Conduta:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="283" y="251" width="266" height="87" uuid="213219a9-6d4b-45e4-80a3-b1f4a6f5c13e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["                                             "+$F{atendimento_conduta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="66" width="250" height="20" uuid="f3b57cc1-1aac-43d9-b2fc-9e8c9d8bb8f0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atendente_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="92" width="42" height="15" uuid="8391c0b2-4859-4303-9030-9f5658851c0c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Validade"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="454" y="92" width="40" height="15" uuid="ed9f9010-68ea-4c19-b095-87fa1ad475ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lote"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="205" y="235" width="344" height="16" uuid="db672760-ff5e-45c4-86ab-ba9d29009ac6"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantRetirada}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="204" y="92" width="1" height="152" uuid="57a08cf8-78da-4dfd-a677-940344e1b5c1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34">
+			<rectangle>
+				<reportElement x="0" y="14" width="553" height="20" backcolor="#00CC33" uuid="e6901dc7-4383-4f8a-b561-fda4a143a054"/>
+			</rectangle>
+			<textField>
+				<reportElement x="453" y="14" width="96" height="20" uuid="231e0220-e074-4f11-8aa3-008a97f426d5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

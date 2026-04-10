@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41849d8f-ff82-4f96-b487-c309aba286f5">
+	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="foto" class="java.lang.String"/>
+	<parameter name="id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     aluno.`idAluno` AS aluno_idAluno,
+     aluno.`nome` AS aluno_nome,
+     aluno.`alergias` AS aluno_alergias,
+     aluno.`ano` AS aluno_ano,
+     aluno.`area` AS aluno_area,
+     aluno.`cartaoSUS` AS aluno_cartaoSUS,
+     aluno.`cpf` AS aluno_cpf,
+     aluno.`dataNasc` AS aluno_dataNasc,
+     aluno.`doencas` AS aluno_doencas,
+     aluno.`med_usoContinuo` AS aluno_med_usoContinuo,
+     aluno.`nomeMae` AS aluno_nomeMae,
+     aluno.`nomePai` AS aluno_nomePai,
+     aluno.`telefoneAluno` AS aluno_telefoneAluno,
+     aluno.`telefoneMae` AS aluno_telefoneMae,
+     aluno.`telefonePai` AS aluno_telefonePai,
+     aluno.`tipo` AS aluno_tipo,
+     aluno.`procedencia` AS aluno_procedencia
+FROM
+     `aluno` aluno
+where idAluno = $P{id}]]>
+	</queryString>
+	<field name="aluno_idAluno" class="java.lang.Integer"/>
+	<field name="aluno_nome" class="java.lang.String"/>
+	<field name="aluno_alergias" class="java.lang.String"/>
+	<field name="aluno_ano" class="java.lang.Integer"/>
+	<field name="aluno_area" class="java.lang.String"/>
+	<field name="aluno_cartaoSUS" class="java.lang.String"/>
+	<field name="aluno_cpf" class="java.lang.String"/>
+	<field name="aluno_dataNasc" class="java.sql.Date"/>
+	<field name="aluno_doencas" class="java.lang.String"/>
+	<field name="aluno_med_usoContinuo" class="java.lang.String"/>
+	<field name="aluno_nomeMae" class="java.lang.String"/>
+	<field name="aluno_nomePai" class="java.lang.String"/>
+	<field name="aluno_telefoneAluno" class="java.lang.String"/>
+	<field name="aluno_telefoneMae" class="java.lang.String"/>
+	<field name="aluno_telefonePai" class="java.lang.String"/>
+	<field name="aluno_tipo" class="java.lang.String"/>
+	<field name="aluno_procedencia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="125" height="148" uuid="95ac10b8-1b15-4502-a36a-9c5feaffe7f8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="261" width="555" height="100" uuid="0b232574-d6f6-4a19-91a3-7faa129fe443"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="388" width="555" height="100" uuid="68bfe30f-6ff7-4e62-9d37-06f843130b5e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="526" width="554" height="100" uuid="ac208fc7-b7d3-4240-b455-b5bb59f5c7f3"/>
+			</rectangle>
+			<line>
+				<reportElement x="421" y="82" width="134" height="1" uuid="63fae66e-5e66-496d-a619-ba2c6e5200db"/>
+			</line>
+			<staticText>
+				<reportElement x="359" y="176" width="73" height="20" uuid="b2570b45-72c6-4f98-a36d-1618be258b00"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="201" width="222" height="19" uuid="45f2b43c-cab0-44c8-bd26-bbaf34f06bfd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_nomeMae}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="224" y="131" width="197" height="1" uuid="8ff0d844-b2ef-4bb2-b37c-980f6f517ea1"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="507" width="278" height="20" uuid="3ed63293-22c3-4b1a-8a4f-d78a52df42d7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS DE USO CONTÍNUO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="37" width="85" height="20" uuid="3b1c1f47-75da-4ac3-8ee0-efd5d1626404"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA NASC:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="87" width="321" height="19" uuid="344bcac7-5c56-4556-b725-917c3fabfa17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_cartaoSUS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="432" y="176" width="123" height="19" uuid="08119669-2183-4431-a2f7-e7d4f57bedb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_telefonePai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="359" y="201" width="73" height="20" uuid="c5955715-18bc-4d00-b3d1-5fae73ec1764"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="234" y="106" width="321" height="1" uuid="7711fe58-edf5-4978-b2fd-cfa63b8ec4f0"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="254" y="62" width="95" height="19" uuid="059b798f-964e-4514-9c6e-9ca2cdb8b745"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_ano}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="224" y="112" width="197" height="19" uuid="95613f8e-ad69-4e3d-bc22-64b9977b27e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_procedencia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="132" y="195" width="228" height="1" uuid="a25af396-e0cc-47d5-a152-5ead4eecef35"/>
+			</line>
+			<line>
+				<reportElement x="132" y="220" width="228" height="1" uuid="1217bac7-1b51-4a89-820a-66de0fda7fd9"/>
+			</line>
+			<textField>
+				<reportElement x="213" y="36" width="172" height="20" uuid="d01eb2ab-1ee7-4f78-a0e4-6ccc19f1d4e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{aluno_dataNasc})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="391" width="552" height="97" uuid="25fcef6d-d9d9-4c6d-a000-69a602116e61"/>
+				<textElement verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_doencas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="35" width="36" height="20" uuid="ac12839c-74c0-4b34-8091-e9f054d265f3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="2" width="122" height="146" uuid="6c83bdd0-d24c-4722-af62-a6a0cc49fe63"/>
+				<imageExpression><![CDATA[$P{foto}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="175" width="137" height="20" uuid="f7e1b0e2-23ee-4639-8520-1839d2bafe2e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPONSÁVEL 1 (PAI):]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="138" y="175" width="221" height="19" uuid="695a2a9b-59d2-4101-9ee3-254f8fb662db"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_nomePai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="128" y="111" width="96" height="20" uuid="e280f221-8ed1-492a-b299-ebb5cac14615"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROCEDÊNCIA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="432" y="218" width="123" height="1" uuid="dbc22f53-d686-46c4-ad78-d64154898b5a"/>
+			</line>
+			<line>
+				<reportElement x="1" y="229" width="554" height="1" uuid="a69d6aa1-59a4-4209-be28-920b4fcdefac"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#00CC00"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="432" y="194" width="123" height="1" uuid="1836ee82-3781-4a34-9c42-bb26bc3ec77c"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="421" y="61" width="134" height="20" uuid="b5ac3edc-1cad-4d8f-aeff-2d5d6e4bec1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_telefoneAluno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="4" y="529" width="551" height="97" uuid="990f9b92-6f4d-4736-b0b6-09644a94dbd8"/>
+				<textElement verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_med_usoContinuo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="368" width="76" height="20" uuid="595e5dea-e2b5-4737-8841-8db9eb5ecae8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOENÇAS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="200" width="137" height="20" uuid="3c8c65ae-ccd8-4487-a657-86989a6aae4a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPONSÁVEL 2 (MÃE):]]></text>
+			</staticText>
+			<line>
+				<reportElement x="128" y="29" width="427" height="1" uuid="3e3682b4-dfa2-4cd2-9058-d756aa306394"/>
+			</line>
+			<staticText>
+				<reportElement x="128" y="86" width="106" height="20" uuid="f12a752b-5ba1-40b1-aafb-5aa0e79c8cbe"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARTÃO DO SUS:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="254" y="80" width="95" height="1" uuid="484fac15-76a7-48f4-b012-4d5f65ff7ae2"/>
+			</line>
+			<line>
+				<reportElement x="213" y="55" width="172" height="1" uuid="ea4b1baf-f92c-4b61-ac9e-82118145ad44"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="432" y="200" width="123" height="18" uuid="7bd54630-e1c0-45bb-b519-404d0594bde8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_telefoneMae}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="264" width="552" height="97" uuid="a431ec14-6352-430c-85ae-336f32935243"/>
+				<textElement verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_alergias}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="421" y="36" width="134" height="19" uuid="d630fed8-ce20-4b40-8c36-dbd20d850422"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="128" y="61" width="126" height="20" uuid="a326d27d-655a-4daf-9413-a2c5fe671b63"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANO DE CADASTRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="61" width="72" height="20" uuid="60915de0-342b-4151-9d43-a12c8ab4a538"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="279" y="2" width="276" height="27" uuid="7db93e64-ede5-403f-bd3f-37b22f17d948"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="241" width="76" height="20" uuid="c2417ece-a700-4ad7-aa12-6ddb42655df1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALERGIAS:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="421" y="56" width="134" height="1" uuid="35c9ce2e-8488-4189-8381-102996358371"/>
+			</line>
+			<textField>
+				<reportElement x="132" y="2" width="147" height="27" uuid="5aa15c7e-5e3f-4f46-9b53-248b633443aa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_tipo}+" ("+$F{aluno_area}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

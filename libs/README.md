@@ -1,0 +1,5 @@
+1- Driver JDBC from MySql (already exists into netbeans 7.4)
+2- Beans Vinculation (already exists into netbeans 7.4)
+3- Hibernate JPA (alread exists into netbeans 7.4)
+4- iReport (lib JAR files are here)
+5- WebCam (lib JAR files are here)

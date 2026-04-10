@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df2f0d37-4c89-454b-9bbd-ead457255d95">
+	<property name="ireport.zoom" value="1.2100000000000026"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="outros" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     count(*),
+     atendimento.`encaminhamento` AS atendimento_encaminhamento,
+     atendimento.`dataAtendimento` AS atendimento_dataAtendimento
+FROM
+     `atendimento` atendimento
+WHERE
+     month(dataatendimento) = $P{mes}
+     and year(dataatendimento) = $P{ano}
+     and encaminhamento NOT IN ("POUSO ALEGRE","CONSULTA MÉDICA LOCAL","POSTO DE SAÚDE EM INCONFIDENTES","PRONTO ATENDIMENTO OURO FINO",""
+)
+GROUP BY
+     encaminhamento
+ORDER BY
+     count(*) DESC]]>
+	</queryString>
+	<field name="count(*)" class="java.lang.Long"/>
+	<field name="atendimento_encaminhamento" class="java.lang.String"/>
+	<field name="atendimento_dataAtendimento" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="29" width="555" height="21" forecolor="#CC0000" uuid="93a8be9e-5275-4316-9712-c3bd1f7d5e2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("MMMMM").format($F{atendimento_dataAtendimento})+" DE "+$P{ano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="29" uuid="b5acd1c3-1408-49da-9db2-7d1a907d9b55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OUTROS ENCAMINHAMENTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="2" width="460" height="20" uuid="1f5aaef7-296a-4337-9eab-154b14e68a67"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["♦ "+$F{atendimento_encaminhamento}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="159bd3a2-cc9f-4ae9-89ce-dc6ce30f1de6"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="463" y="2" width="89" height="20" uuid="da72a515-92f8-4f6e-a0cd-7be0172bda84"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( "+$F{count(*)}+" ) "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<rectangle>
+				<reportElement x="0" y="0" width="553" height="20" backcolor="#00CC33" uuid="7220f84f-c5a0-4c84-9a91-4967b654023a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="520" y="0" width="30" height="20" uuid="0c465dc1-323c-4164-8022-89d5fd34ae26"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="27" uuid="4bdd7b4a-2efe-420f-8dee-e150fa01ff3c"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double" lineColor="#CC0000"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="2" width="460" height="24" forecolor="#CC0000" uuid="15fd9ff5-e99d-4a8f-98b1-086606040204"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="463" y="2" width="89" height="24" forecolor="#CC0000" uuid="6017c3d8-ac43-478a-bc9a-fd9aa2e31d83"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" ( "+$P{outros}+" ) "]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

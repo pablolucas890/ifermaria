@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e90c4d10-9db5-490a-bace-d902302c8746">
+	<property name="ireport.zoom" value="0.4240976183725007"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ouroFino" class="java.lang.Integer"/>
+	<parameter name="inconfidentes" class="java.lang.Integer"/>
+	<parameter name="pousoAlegre" class="java.lang.Integer"/>
+	<parameter name="local" class="java.lang.Integer"/>
+	<parameter name="total" class="java.lang.Integer"/>
+	<parameter name="outros" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     atendimento.`encaminhamento` AS atendimento_encaminhamento
+FROM
+     `atendimento` atendimento]]>
+	</queryString>
+	<field name="atendimento_encaminhamento" class="java.lang.String"/>
+	<title>
+		<band height="505" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="37" width="802" height="20" uuid="bdfe45c3-5e53-4745-8fb5-6ce84be81d58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MAPA DE ATENDIMENTO MENSAL - SETOR DE ENFERMAGEM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="71" width="802" height="20" uuid="6b0edfab-51fc-499d-9180-ba1cd8371504"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mes}+" / "+$P{ano}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="69" y="140" width="670" height="68" uuid="4d3c1c3a-3241-4101-bc04-24136afdac5c"/>
+			</rectangle>
+			<line>
+				<reportElement x="636" y="141" width="1" height="66" uuid="d9003294-0cf4-46ef-9fc9-99711c00633a"/>
+			</line>
+			<staticText>
+				<reportElement x="521" y="142" width="115" height="19" uuid="96dba033-9e31-4569-a2ce-8a7896265156"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTA MÉDICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="142" width="106" height="19" uuid="644b68d9-6ecb-4619-9068-264eb811f39b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POSTO DE SAÚDE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="434" y="141" width="1" height="65" uuid="73bdb9d0-0501-4ca7-9ab3-31a05a81bd80"/>
+			</line>
+			<staticText>
+				<reportElement x="69" y="139" width="134" height="20" uuid="e8f7522d-5679-4b70-9a40-a1e13d28a1d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numeros de Atendimentos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="203" y="139" width="1" height="67" uuid="3159e3ed-53bb-4803-a97a-9ff44cd28660"/>
+			</line>
+			<staticText>
+				<reportElement x="205" y="142" width="121" height="19" uuid="3ab89fb9-6e1d-4c2e-973c-ebdb2f6aea5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRONTO ATENDIMENTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="327" y="141" width="1" height="67" uuid="64ee86f5-e257-4a7c-b8b1-f9dbe9e0156a"/>
+			</line>
+			<staticText>
+				<reportElement x="205" y="161" width="121" height="19" uuid="2280cc73-f67d-4ee3-93cb-00c97bb31d45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ OURO FINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="161" width="115" height="19" uuid="a42b011b-4b3e-4ed8-8d1f-0ba99eb841a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ LOCAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="161" width="106" height="19" uuid="83f97dcc-67d8-4cc6-882c-a8ec8e1b2ae6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ EM INCONFIDENTES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="69" y="181" width="670" height="1" uuid="5fdc0d73-b718-4370-b670-11bd7b4aaf99"/>
+			</line>
+			<staticText>
+				<reportElement x="435" y="142" width="86" height="19" uuid="fca4abae-c552-4ef8-86d9-636ee02c49b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POUSO ALEGRE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="521" y="140" width="1" height="66" uuid="c8ebe57a-b0a8-4629-a7a8-d2535341b853"/>
+			</line>
+			<staticText>
+				<reportElement x="639" y="141" width="100" height="20" uuid="d07cb0de-a66e-42e7-be83-2843ed75599a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OUTROS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="205" y="185" width="121" height="20" uuid="9d431079-1356-4fca-87c9-77832cabddcc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ouroFino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="185" width="106" height="20" uuid="0415e64b-3ca9-4194-8577-cfe99440183f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{inconfidentes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="185" width="86" height="20" uuid="dccc1dbb-6089-4dcf-9a2b-b648bf2ceb7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pousoAlegre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="521" y="185" width="115" height="20" uuid="cb9b32cf-c78e-4d15-bb07-56eaf05ede83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{local}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="639" y="185" width="100" height="20" uuid="6db8f067-8cb9-446d-a5a1-61fedb6337a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{outros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="183" width="134" height="20" uuid="cba70d47-6e11-4905-b836-5f588d1f1238"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="299" width="800" height="20" uuid="b4c188dc-1b85-4cf2-a34a-d2230d0c3742"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INCONFIDENTES: _____/_____/__________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="412" width="802" height="20" uuid="23fc224c-347b-43d6-9758-295f8758acb8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________________________________________________________________]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+</jasperReport>

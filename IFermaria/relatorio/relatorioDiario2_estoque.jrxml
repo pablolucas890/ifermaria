@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioDiario2_estoque" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5dedeae6-18fe-469d-bda8-df7e533cda64">
+	<property name="ireport.zoom" value="1.6500000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAtendimento" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     medicamento.`nome` AS medicamento_nome,
+     medicamento.`tipo` AS medicamento_tipo,
+     estoque.`dataValidade` AS estoque_dataValidade,
+     atendimento_estoque.`atendimentos_idAtendimanto` AS atendimento_estoque_atendimentos_idAtendimanto,
+     atendimento_estoque.`estoque_idestoque` AS atendimento_estoque_estoque_idestoque,
+     estoque.`quantAntiga` AS estoque_quantAntiga,
+     estoque.`quant_atual` AS estoque_quant_atual,
+     estoque.`lote` AS lote
+FROM
+     `medicamento` medicamento INNER JOIN `estoque` estoque ON medicamento.`idmedicamento` = estoque.`medicamento_idmedicamento`
+     INNER JOIN `atendimento_estoque` atendimento_estoque ON estoque.`idestoque` = atendimento_estoque.`estoque_idestoque`
+WHERE
+     atendimentos_idAtendimanto = $P{idAtendimento}
+LIMIT 09]]>
+	</queryString>
+	<field name="medicamento_nome" class="java.lang.String"/>
+	<field name="medicamento_tipo" class="java.lang.String"/>
+	<field name="estoque_dataValidade" class="java.sql.Date"/>
+	<field name="atendimento_estoque_atendimentos_idAtendimanto" class="java.lang.Integer"/>
+	<field name="atendimento_estoque_estoque_idestoque" class="java.lang.Integer"/>
+	<field name="estoque_quantAntiga" class="java.lang.Integer"/>
+	<field name="estoque_quant_atual" class="java.lang.Integer"/>
+	<field name="lote" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="conta" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{estoque_quantAntiga}-$F{estoque_quant_atual}]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement x="13" y="0" width="233" height="15" uuid="87233c31-faea-4560-a799-ae5a334929d8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicamento_nome}+" em "+$F{medicamento_tipo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="295" y="0" width="51" height="15" uuid="ea681c43-aefb-4acb-b629-a56e26da231f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{estoque_dataValidade})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="13" y="14" width="333" height="1" uuid="fea68b0e-d4a8-4bb4-9167-c09f434d718c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="247" y="0" width="45" height="15" uuid="ee47394e-6b67-4dd9-bb4d-a61b722b144c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="293" y="0" width="1" height="15" uuid="e686077b-2d05-48fe-b8f3-b39c33f475fb"/>
+			</line>
+			<line>
+				<reportElement x="246" y="0" width="1" height="15" uuid="37685aed-8809-4019-b733-dd232167baf7"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="73287f69-e7e7-477f-a144-0a362225da64">
+	<property name="ireport.zoom" value="1.210000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT count(*),
+     atendimento_enfermidade.`atendimentos_idAtendimanto` AS atendimento_enfermidade_atendimentos_idAtendimanto,
+     atendimento_enfermidade.`enfermidades_idEnfermidade` AS atendimento_enfermidade_enfermidades_idEnfermidade,
+     atendimento.`dataAtendimento` AS atendimento_dataAtendimento,
+     enfermidade.`nome` AS enfermidade_nome
+FROM
+     `atendimento` atendimento INNER JOIN `atendimento_enfermidade` atendimento_enfermidade ON atendimento.`idAtendimanto` = atendimento_enfermidade.`atendimentos_idAtendimanto`
+     INNER JOIN `enfermidade` enfermidade ON atendimento_enfermidade.`enfermidades_idEnfermidade` = enfermidade.`idEnfermidade`
+where month(dataAtendimento) = $P{mes}
+and year(dataAtendimento) = $P{ano}
+group by nome
+order by count(*) desc]]>
+	</queryString>
+	<field name="count(*)" class="java.lang.Long"/>
+	<field name="atendimento_enfermidade_atendimentos_idAtendimanto" class="java.lang.Integer"/>
+	<field name="atendimento_enfermidade_enfermidades_idEnfermidade" class="java.lang.Integer"/>
+	<field name="atendimento_dataAtendimento" class="java.sql.Date"/>
+	<field name="enfermidade_nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="66" uuid="5c9ddfee-1e9b-4038-817b-909ec08405c0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="188" y="10" width="367" height="29" uuid="a556e97f-b907-45f9-96bd-57eb84d6dafa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE ENFERMIDADES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="39" width="367" height="21" forecolor="#CC0000" uuid="d6ffba2e-f598-4da0-a648-7cac5a694d7f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("MMMMM").format($F{atendimento_dataAtendimento})+" DE "+$P{ano}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="3" y="2" width="185" height="58" uuid="de65b04b-d00b-405e-9811-bf774f35b0ce"/>
+				<imageExpression><![CDATA["if.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="455" height="20" uuid="f210e965-cd27-4ca3-b4df-f44cdcefa6b5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["  ♦ "+$F{enfermidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="a22c8b48-3d8a-4990-acff-b5c4768826d5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["( "+$F{count(*)}+" )"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="0c0524cf-fd39-4a1b-a631-f942c1a41c58"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="553" height="20" backcolor="#00CC33" uuid="f1ca9eb4-58e8-4905-931c-b36bb8439578"/>
+			</rectangle>
+			<textField>
+				<reportElement x="520" y="0" width="30" height="20" uuid="2d1acb42-afc6-4695-b8d8-526e46c60851"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioDiario_enfermidades" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="fd289b5f-eeee-4ee6-b928-654c202808e9">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAtendimento" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     atendimento_enfermidade.`atendimentos_idAtendimanto` AS atendimento_enfermidade_atendimentos_idAtendimanto,
+     atendimento_enfermidade.`enfermidades_idEnfermidade` AS atendimento_enfermidade_enfermidades_idEnfermidade,
+     enfermidade.`nome` AS enfermidade_nome
+FROM
+     `enfermidade` enfermidade INNER JOIN `atendimento_enfermidade` atendimento_enfermidade ON enfermidade.`idEnfermidade` = atendimento_enfermidade.`enfermidades_idEnfermidade`
+WHERE
+     atendimentos_idAtendimanto = $P{idAtendimento}
+Limit 10]]>
+	</queryString>
+	<field name="atendimento_enfermidade_atendimentos_idAtendimanto" class="java.lang.Integer"/>
+	<field name="atendimento_enfermidade_enfermidades_idEnfermidade" class="java.lang.Integer"/>
+	<field name="enfermidade_nome" class="java.lang.String"/>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement x="11" y="-1" width="238" height="16" uuid="94eced5b-d5d3-46cd-ba8a-88678c053ae8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" ♦ "+$F{enfermidade_nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="11" y="14" width="238" height="1" uuid="0e9623c2-a2ea-4b77-a076-a11ef494eae7"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
